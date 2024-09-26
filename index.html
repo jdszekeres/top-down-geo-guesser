@@ -3,12 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GeoGuesser</title>
 </head>
 <body>
-    
+    <div class="header">
+        <h1>Geography Guesser</h1>
+    </div>
+
+    <div class="prompt">
+        guess where this is:
+        <div id="tile-holder">
+
+        </div>
+    </div>
 </body>
 <script>
+    async function showTile(lat, lon) {
+        const zoom = 10;
+        let img_element = await getTile(lat, lon, zoom);
+        document.getElementById("tile-holder").innerHTML = ""
+        document.getElementById("tile-holder").appendChild(img_element);
+    }
     async function getTile(lat, lon, zoom) {
         const val = await fetch('/tile', {
             'method': 'POST',
@@ -20,8 +35,9 @@
         console.log(data.url);
         let img = document.createElement('img');
         img.src = data.url;
-        document.body.appendChild(img);
-        console.log(img.src)
+        return img;
     }
+
+
 </script>
 </html>
