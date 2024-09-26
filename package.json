@@ -1,0 +1,27 @@
+{
+  "name": "top-down-geo-guesser",
+  "version": "1.0.0",
+  "description": "A geoguesser game that is based of satelite imagery",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdszekeres/top-down-geo-guesser.git"
+  },
+  "keywords": [
+    "geoguesser",
+    "maptiles",
+    "maps"
+  ],
+  "author": "jdszekeres",
+  "bugs": {
+    "url": "https://github.com/jdszekeres/top-down-geo-guesser/issues"
+  },
+  "homepage": "https://github.com/jdszekeres/top-down-geo-guesser#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.0"
+  }
+}
