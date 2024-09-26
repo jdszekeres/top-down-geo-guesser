@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoGuesser</title>
+    <style>
+        .map {
+            width: 640px;
+            height: 480px;
+        }
+        h1 {
+            text-align: center;
+            transform: rotateX(300deg);
+            font-weight: 900;
+            font-size: 80px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            background-image: url('https://jdszekeres.github.io/geography.gif');
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
     <div class="header">
@@ -15,9 +36,28 @@
         <div id="tile-holder">
 
         </div>
+        <div class="map" id="guesser">
+
+        </div>
     </div>
 </body>
 <script>
+    var map = L.map('guesser').setView([0, 0], 1);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var marker;
+    map.on('click', function(e) {
+        if(marker)
+            map.removeLayer(marker);
+        console.log(e.latlng); // e is an event object (MouseEvent in this case)
+        marker = L.marker(e.latlng).addTo(map);
+    });
+
+    showTile(34, -118);
+
     async function showTile(lat, lon) {
         const zoom = 10;
         let img_element = await getTile(lat, lon, zoom);
