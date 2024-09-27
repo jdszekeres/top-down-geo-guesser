@@ -1,11 +1,13 @@
 const express = require('express')
 var bodyParser = require('body-parser')
+const request = require('request');
+
 const app = express()
 const port = 3000
 
 const places = [
     {"name": "LA", coord: [34, -118]},
-    {"name": "NYC", coord: [40, -74]}
+    {"name": "NYC", coord: [40.780316, -74.012000]}
 ]
 
 app.use(bodyParser.json())
@@ -37,6 +39,30 @@ app.post('/tile', (req, res) => {
     const url = `https://tile.openstreetmap.org/${zoom}/${x}/${y}.png`
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ url: url }));
+});
+
+app.get('/tile/:zoom/:lat/:lon', (req, res) => {
+    console.log(req.params);
+    const lat = parseFlreq.params.lat;
+    const lon = req.params.lon;
+    const zoom = req.params.zoom;
+
+    const x = lon2tile(lon, zoom);
+    const y = lat2tile(lat, zoom);
+
+    const url = `https://tile.openstreetmap.org/${zoom}/${x}/${y}.png`
+    
+    
+    request({
+        url: url,
+        encoding: null
+      }, 
+      (err, resp, buffer) => {
+        if (!err && resp.statusCode === 200){
+          res.set("Content-Type", "image/png");
+          res.send(resp.body);
+        }
+      });
 });
 
 app.listen(port, () => {
