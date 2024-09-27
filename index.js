@@ -3,6 +3,11 @@ var bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
+const places = [
+    {"name": "LA", coord: [34, -118]},
+    {"name": "NYC", coord: [40, -74]}
+]
+
 app.use(bodyParser.json())
 
 const lon2tile = (lon,zoom) => (Math.floor((lon+180)/360*Math.pow(2,zoom)));
@@ -15,7 +20,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/place', (req, res) => {
-    res.send([33, -119]);
+    res.setHeader('Content-Type', 'application/json');
+
+    res.end(JSON.stringify(places[Math.floor(Math.random()*places.length)]));
 })
 
 app.post('/tile', (req, res) => {
