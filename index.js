@@ -10,7 +10,11 @@ const places = [
     {name: "NYC", coord: [40.780316, -74.012000], zoom: 10},
     {name: "Yosemite", coord: [37.8651, -119.5383], zoom: 8},
     {name: "Yellowstone", coord: [44.5979, -110.5612], zoom: 8},
-    {name: "Grand Prismatic Springs", coord: [44.525626, -110.838954], zoom: 17}
+    {name: "Grand Prismatic Springs", coord: [44.525626, -110.838954], zoom: 17},
+    {name: "Statue of Liberty", coord: [40.691290, -74.047306], zoom: 16},
+    {name: "Reykjavík", coord: [64.158133, -21.998641], zoom: 10},
+    {name: "Hungarian Parliment Building", coord: [47.508748, 19.044417], zoom: 12},
+    {name: "Sydney Opera House", coord: [-33.849912, 151.207357], zoom : 14}
 ]
 
 app.use(bodyParser.json())
