@@ -6,14 +6,14 @@ const app = express()
 const port = 3000
 
 const places = [
-    {"name": "LA", coord: [34, -118]},
-    {"name": "NYC", coord: [40.780316, -74.012000]}
+    {name: "LA", coord: [34, -118], zoom: 10},
+    {name: "NYC", coord: [40.780316, -74.012000], zoom: 10},
+    {name: "Yosemite", coord: [37.8651, -119.5383], zoom: 8},
+    {name: "Yellowstone", coord: [44.5979, -110.5612], zoom: 8},
+    {name: "Grand Prismatic Springs", coord: [44.525626, -110.838954], zoom: 17}
 ]
 
 app.use(bodyParser.json())
-
-const lon2tile = (lon,zoom) => (Math.floor((lon+180)/360*Math.pow(2,zoom)));
-const lat2tile = (lat,zoom) => (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom)));
 
 
 
@@ -41,28 +41,37 @@ app.post('/tile', (req, res) => {
     res.end(JSON.stringify({ url: url }));
 });
 
-app.get('/tile/:zoom/:lat/:lon', (req, res) => {
+app.get('/tile/:zoom/:x/:y', (req, res) => {
     console.log(req.params);
-    const lat = parseFlreq.params.lat;
-    const lon = req.params.lon;
-    const zoom = req.params.zoom;
+    const x = parseFloat(req.params.x);
+    const y = parseFloat(req.params.y);
+    const zoom = parseInt(req.params.zoom);
 
-    const x = lon2tile(lon, zoom);
-    const y = lat2tile(lat, zoom);
 
-    const url = `https://tile.openstreetmap.org/${zoom}/${x}/${y}.png`
+    const url = `https://mt0.google.com/vt/lyrs=s&hl=en&x=${x}&y=${y}&z=${zoom}&s=Ga`
     
-    
-    request({
-        url: url,
-        encoding: null
-      }, 
-      (err, resp, buffer) => {
-        if (!err && resp.statusCode === 200){
-          res.set("Content-Type", "image/png");
-          res.send(resp.body);
+    fetch(url, {headers: { 'User-Agent': 'Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36' }}).then((resp) => {
+      console.log(url);
+      // resp.text().then(console.log);
+        if (resp.status === 200){
+          res.set("Content-Type", "image/jpeg");
+
+          resp.body.pipeTo(new WritableStream({
+            start() {
+
+            },
+            write(chunk) {
+              res.write(chunk);
+            },
+            close() {
+              res.end();
+            },
+          }));
         }
-      });
+    })
+    
+    
+      
 });
 
 app.listen(port, () => {

@@ -45,9 +45,12 @@
             justify-content: center;
             align-items: center;
         }
-        #tile-holder > img {
+        #tile-holder > div {
             width: 80%;
             padding: 10%;
+        }
+        #tile-holder > div > img {
+            width: 50%;
         }
         .map {
             width: 50% !important;
@@ -63,6 +66,7 @@
         }
         }
 
+
         
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -76,6 +80,7 @@
     <div class="prompt">
         <h2 class="asker">guess where this is:</h2>
         <div id="tile-holder">
+            
 
         </div>
         <div class="map" id="guesser">
@@ -90,10 +95,14 @@
     var map = L.map('guesser').setView([0, 0], 2);
     var selection_marker = L.marker([0,0]).addTo(map);
     var submitted = false;
-    var tile = [34, -118];
+    var tile;
     const near_val = 606.5;
     const max_score = 5000;
     const get_score = (distance)  => max_score * Math.exp(-0.5 * (distance / near_val)**2);
+
+    const lon2tile = (lon,zoom) => (Math.floor((lon+180)/360*Math.pow(2,zoom)));
+    const lat2tile = (lat,zoom) => (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom)));
+
     const haversineDistance = ([lat1, lon1], [lat2, lon2], isMiles = false) => {
       const toRadian = angle => (Math.PI / 180) * angle;
       const distance = (a, b) => (Math.PI / 180) * (a - b);
@@ -169,29 +178,32 @@
         console.log("starting");
         const resp = await fetch('/place');
         const place = await resp.json();
+        
         tile = place.coord;
-        showTile(tile[0], tile[1]);
+        showTile(tile[0], tile[1], place.zoom);
     }
     
 
-    async function showTile(lat, lon) {
-        const zoom = 10;
-        let img_element = await getTile(lat, lon, zoom);
-        document.getElementById("tile-holder").innerHTML = ""
-        document.getElementById("tile-holder").appendChild(img_element);
-    }
-    async function getTile(lat, lon, zoom) {
-        const val = await fetch('/tile', {
-            'method': 'POST',
-            body: JSON.stringify({lat: lat, lon: lon, zoom: zoom}),
-            headers: {"Content-Type": "application/json"}
-        });
-        const data = await val.json();
+    async function showTile(lat, lon, zoom) {
+
         
-        console.log(data.url);
-        let img = document.createElement('img');
-        img.src = data.url;
-        return img;
+        document.getElementById("tile-holder").innerHTML = getTile(lat, lon, zoom);
+    }
+    function getTile(lat, lon, zoom) {
+        
+        
+        const x = lon2tile(lon, zoom+1);
+        const y = lat2tile(lat, zoom+1);
+
+        
+        return `
+            <div style="display: flex; flex-wrap: wrap;">
+                <img src="/tile/${zoom+1}/${x}/${y}" />
+                <img src="/tile/${zoom+1}/${x+1}/${y}" />
+                <img src="/tile/${zoom+1}/${x}/${y+1}" />
+                <img src="/tile/${zoom+1}/${x+1}/${y+1}" />
+            </div>
+        `;
     }
     function show_score(score) {
         console.log(score);
