@@ -2,12 +2,12 @@ const express = require('express')
 var bodyParser = require('body-parser')
 const request = require('request');
 const NodeFetchCache = require('node-fetch-cache').NodeFetchCache;
-const FileSystemCache = require('node-fetch-cache').FileSystemCache;
+const MemoryCache = require('node-fetch-cache').MemoryCache;
 
 
 const fetch = NodeFetchCache.create({
-  cache: new FileSystemCache({ cacheDirectory: 'images_cache' }),
-}); //a
+  cache: new MemoryCache(),
+});
 
 const app = express()
 const port = parseFloat(process.argv.at(-1)) || 3000;
@@ -114,7 +114,7 @@ app.use(bodyParser.json())
 
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/play.html');
 })
 
 app.get('/place', (req, res) => {

@@ -2,11 +2,11 @@
   "name": "top-down-geo-guesser",
   "version": "1.0.0",
   "description": "A geoguesser game that is based of satelite imagery",
-  "main": "index.js",
+  "main": "api/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "prod": "node index.js 80",
+    "dev": "nodemon api/index.js",
+    "start": "node api/index.js 80",
     "build": "echo \"Build Complete\""
   },
   "repository": {
