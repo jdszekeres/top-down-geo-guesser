@@ -10,7 +10,7 @@ const fetch = NodeFetchCache.create({
 });
 
 const app = express()
-const port = 3000
+const port = parseFloat(process.argv.at(-1)) || 3000;
 
 const places = [
   { name: "LA", coord: [34, -118], zoom: 10 },
