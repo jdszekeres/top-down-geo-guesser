@@ -62,8 +62,44 @@ const places = [
   {name: "Norfolk, VA", coord: [36.925957, -76.326584], zoom: 15},
   {name: "Washington Monument, DC", coord: [38.889514, -77.035452], zoom: 17},
   {name: "Niagra Falls, NY", coord: [43.077532, -79.074846], zoom: 16},
-  {name: "Cape Cod, Ma", coord: [41.806065, -69.939503], zoom: 13}
+  {name: "Cape Cod, Ma", coord: [41.806065, -69.939503], zoom: 13},
   //END places from Landscapes of America book
+
+  //START airports
+  {name: "KDEN", coord: [39.856120, -104.676363], zoom: 11},
+  {name: "KIAD", coord: [38.951375, -77.456734], zoom: 11},
+  {name: "KORD", coord: [41.977164, -87.905138], zoom: 12},
+  {name: "KDFW", coord: [32.901422, -97.040242], zoom: 12},
+  {name: "KIAH", coord: [29.987071, -95.342269], zoom: 12},
+  {name: "KSFO", coord: [37.618685, -122.381466], zoom: 13},
+  {name: "KMCO", coord: [28.432498, -81.308039], zoom: 12},
+  {name: "KSLC", coord: [40.789598, -111.986876], zoom: 12},
+  {name: "KJFK", coord: [40.644491, -73.779644], zoom: 12},
+  {name: "KDTW", coord: [42.213021, -83.352824], zoom: 12},
+  {name: "KLAX", coord: [33.943980, -118.402944], zoom: 12},
+  {name: "KATL", coord: [33.640894, -84.429300], zoom: 13},
+  {name: "KLAS", coord: [36.084905, -115.151657], zoom: 12},
+  {name: "KCLT", coord: [35.220671, -80.949987], zoom: 13},
+  {name: "KMIA", coord: [25.793379, -80.280183], zoom: 12},
+  {name: "KSEA", coord: [47.449611, -122.306748], zoom: 12},
+  {name: "KEWR", coord: [40.690134, -74.176114], zoom: 13},
+  {name: "KPHX", coord: [33.434916, -112.011602], zoom: 13},
+  {name: "KBOS", coord: [42.366337, -71.010630], zoom: 12},
+  {name: "KFLL", coord: [26.071551, -80.147475], zoom: 13},
+  {name: "KMSP", coord: [44.884802, -93.214121], zoom: 13},
+  {name: "KLGA", coord: [40.779624, -73.874960], zoom: 13},
+  {name: "KPHL", coord: [39.874548, -75.242144], zoom: 12},
+  {name: "KBWI", coord: [39.179392, -76.667598], zoom: 13},
+  {name: "KDCA", coord: [38.850885, -77.040096], zoom: 13},
+  {name: "KSAN", coord: [32.733713, -117.190466], zoom: 13},
+  {name: "KTPA", coord: [27.976648, -82.530300], zoom: 12},
+  {name: "KBNA", coord: [36.123753, -86.677396], zoom: 13},
+  {name: "KAUS", coord: [30.196699, -97.666407], zoom: 13},
+  {name: "KMDW", coord: [41.785597, -87.752084], zoom: 13},
+  {name: "KHNL", coord: [21.315290, -157.926407], zoom: 13},
+  {name: "KANC", coord: [61.176267, -149.991052], zoom: 12},
+  {name: "KVCV", coord: [34.591923, -117.380446], zoom: 12}
+  //END airports
 ]
 
 app.use(bodyParser.json())
