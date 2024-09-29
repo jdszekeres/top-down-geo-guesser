@@ -320,10 +320,10 @@
 
 </body>
 <script>
-    var map = L.map('guesser').setView([0, 0], 2);
+    var map = L.map('guesser').setView([44.967243, -99.771556], 4);
     var prev_score = parseFloat(new URLSearchParams(window.location.search).get('score')) || 0;
     MicroModal.init();
-    var selection_marker = L.marker([0, 0]).addTo(map);
+    var selection_marker = L.marker([44.967243, -103.771556]).addTo(map);
     var submitted = false;
     var tile;
     const near_val = 606.5;
@@ -404,10 +404,9 @@
     L.control.submit({ position: 'topright' }).addTo(map);
 
     async function start() {
-        const resp = await fetch('/place');
-        const place = await resp.json();
+       const resp = await fetch('/place');
+       const place = await resp.json();
 
-        // const place = { name: "Mt. Witney, CA", coord: [36.577970, -118.293386], zoom: 8 };
         tile = place.coord;
         showTile(tile[0], tile[1], place.zoom);
     }
