@@ -404,10 +404,10 @@
     L.control.submit({ position: 'topright' }).addTo(map);
 
     async function start() {
-        console.log("starting");
         const resp = await fetch('/place');
         const place = await resp.json();
 
+        // const place = { name: "Mt. Witney, CA", coord: [36.577970, -118.293386], zoom: 8 };
         tile = place.coord;
         showTile(tile[0], tile[1], place.zoom);
     }
