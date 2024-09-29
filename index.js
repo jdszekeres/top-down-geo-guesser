@@ -7,7 +7,7 @@ const FileSystemCache = require('node-fetch-cache').FileSystemCache;
 
 const fetch = NodeFetchCache.create({
   cache: new FileSystemCache({ cacheDirectory: 'images_cache' }),
-});
+}); //a
 
 const app = express()
 const port = parseFloat(process.argv.at(-1)) || 3000;
