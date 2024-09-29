@@ -99,6 +99,14 @@
                 color: rgb(216, 228, 214)
             }
         }
+
+        @media (any-pointer: coarse) {
+    /* do your own styles */
+    .map-holder {
+        width: 100%;
+    }
+
+}
     </style>
     <!--modal styling - do not touch-->
     <style>
@@ -289,10 +297,11 @@
 <body>
     <div class="header">
         <h1>Geography Guesser</h1>
+        <h2 class="asker">guess where this is:</h2>
     </div>
 
     <div class="prompt">
-        <h2 class="asker">guess where this is:</h2>
+        
         <div id="tile-holder">
 
 
