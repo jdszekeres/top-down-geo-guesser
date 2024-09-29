@@ -55,7 +55,7 @@
 
         #tile-holder>div {
             width: 80%;
-            padding: 1%;
+            padding: 10%;
         }
 
         #tile-holder>div>img {
@@ -101,10 +101,27 @@
         }
 
         @media (any-pointer: coarse) {
-    /* do your own styles */
-    .map-holder {
-        width: 100%;
+    .header {
+        height: unset;
     }
+    h2 {margin: 0px; font-size: larger;}
+    h1 {font-size: xx-large;}
+    .map-holder {
+        width: 80%;
+        padding: 10%;
+        margin-top: 10%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        bottom: 0;
+    }
+    #tile-holder {
+            width: 100%;
+            
+        }
+        #tile-holder > div {
+            padding: 0px;
+        }
 
 }
     </style>
