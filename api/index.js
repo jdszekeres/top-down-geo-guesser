@@ -4,7 +4,6 @@ const request = require('request');
 const NodeFetchCache = require('node-fetch-cache').NodeFetchCache;
 const MemoryCache = require('node-fetch-cache').MemoryCache;
 var minify = require('express-minify');
-app.use(minify());
 
 const fetch = NodeFetchCache.create({
   cache: new MemoryCache(),
@@ -111,6 +110,7 @@ const places = [
 ]
 
 app.use(bodyParser.json())
+app.use(minify());
 
 
 
