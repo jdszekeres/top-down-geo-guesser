@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon api/index.js",
     "start": "npm run prestart && node api/index.js 80",
-    "build": "echo \"Build Complete\"",
-    "prestart": "minify api/play.html > api/play.min.html && minify api/index.js > api/index.js"
+    "build": "echo \"Build Complete\""
   },
   "repository": {
     "type": "git",
@@ -28,6 +27,7 @@
     "body-parser": "^1.20.3",
     "express": "^4.21.0",
     "express-minify": "^1.0.0",
+    "minify": "^11.4.1",
     "node-fetch": "^3.3.2",
     "node-fetch-cache": "^5.0.2",
     "nodemon": "^3.1.7",
