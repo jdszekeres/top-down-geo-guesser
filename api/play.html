@@ -213,7 +213,7 @@
     var submitted = false;
     var tile;
     var name = "";
-    var prev_score = parseFloat(new URLSearchParams(window.location.search).get('score')) || get_already_chosen().reduce((x,y)=>x+parseFloat(y.score), 0);
+    var prev_score = get_already_chosen().reduce((x,y)=>x+parseFloat(y.score), 0);
     const near_val = 606.5;
     const max_score = 5000;
 
