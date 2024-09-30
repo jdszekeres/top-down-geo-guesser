@@ -26,7 +26,7 @@ const places = [
   { name: "Denali, AK", coord: [63.068571, -151.007126], zoom: 12 },
   { name: "Milolii, Hawaii", coord: [19.185407, -155.906528], zoom: 16 },
   { name: "Laie point", coord: [21.650733, -157.920210], zoom: 14 },
-  { name: "Kīlauea, Hawaii", coord: [19.409208, -155.281719], zoom: 14 },
+  { name: "Kilauea, Hawaii", coord: [19.409208, -155.281719], zoom: 14 },
   { name: "Crater Lake", coord: [42.944695, -122.108147], zoom: 12 },
   { name: "The Great Bend, WA", coord: [47.358338, -123.118856], zoom: 8 },
   { name: "Palouse Farming Country, WA/ID", coord: [46.538175, -117.039979], zoom: 12 },
@@ -118,8 +118,11 @@ app.get('/', (req, res) => {
 })
 
 app.get('/place', (req, res) => {
+  const exclude = req.query.exclude.split(",") ?? [];
+  const to_chose = places.filter((x) => !exclude.includes(btoa(x.name)));
+
   res.setHeader('Content-Type', 'application/json');
-  const chosen = places[Math.floor(Math.random() * places.length)];
+  const chosen = to_chose[Math.floor(Math.random() * to_chose.length)];
   // const chosen = places.at(-1);
   res.end(JSON.stringify(chosen));
 
@@ -136,7 +139,6 @@ app.get('/tile/:zoom/:x/:y', (req, res) => {
   const url = `https://mt0.google.com/vt/lyrs=s&hl=en&x=${x}&y=${y}&z=${zoom}&s=Ga`
 
   fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36' } }).then((resp) => {
-    // resp.text().then(console.log);
     if (resp.status === 200) {
       res.set("Content-Type", "image/jpeg");
 

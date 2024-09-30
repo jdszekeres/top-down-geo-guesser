@@ -361,85 +361,48 @@
 </body>
 <script>
     var map = L.map('guesser').setView([36.03958956279518, -101.07421875], 2);
-    var prev_score = parseFloat(new URLSearchParams(window.location.search).get('score')) || 0;
-    MicroModal.init();
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
     var selection_marker = L.marker([40.967243, -103.771556]).addTo(map);
+
+    MicroModal.init();
+    
     var submitted = false;
     var tile;
+    var name = "";
+    var prev_score = parseFloat(new URLSearchParams(window.location.search).get('score')) || 0;
     const near_val = 606.5;
     const max_score = 5000;
+
     const get_score = (distance) => max_score * Math.exp(-0.5 * (distance / near_val) ** 2);
 
     const lon2tile = (lon, zoom) => (Math.floor((lon + 180) / 360 * Math.pow(2, zoom)));
     const lat2tile = (lat, zoom) => (Math.floor((1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom)));
 
-    const haversineDistance = ([lat1, lon1], [lat2, lon2], isMiles = false) => {
-        const toRadian = angle => (Math.PI / 180) * angle;
-        const distance = (a, b) => (Math.PI / 180) * (a - b);
-        const RADIUS_OF_EARTH_IN_KM = 6371;
-
-        const dLat = distance(lat2, lat1);
-        const dLon = distance(lon2, lon1);
-
-        lat1 = toRadian(lat1);
-        lat2 = toRadian(lat2);
-
-        // Haversine Formula
-        const a =
-            Math.pow(Math.sin(dLat / 2), 2) +
-            Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
-        const c = 2 * Math.asin(Math.sqrt(a));
-
-        let finalDistance = RADIUS_OF_EARTH_IN_KM * c;
-
-        if (isMiles) {
-            finalDistance /= 1.60934;
-        }
-
-        return finalDistance;
-    };
+    const haversineDistance = ([s, n], [e, t]) => { var i, o; let r = (s, n) => Math.PI / 180 * (s - n), a = r(e, s), c = r(t, n); s = Math.PI / 180 * s, e = Math.PI / 180 * e; let _ = Math.pow(Math.sin(a / 2), 2) + Math.pow(Math.sin(c / 2), 2) * Math.cos(s) * Math.cos(e), I = 2 * Math.asin(Math.sqrt(_)); return 6371 * I };
 
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
 
+    
 
-    map.on('click', function (e) {
-        if (selection_marker && !submitted)
-            map.removeLayer(selection_marker);
-        console.log(e)
-        if (!submitted)
-            selection_marker = L.marker(e.latlng).addTo(map);
-    });
+    map.on("click", function (o) { selection_marker && !submitted && map.removeLayer(selection_marker),  submitted || (selection_marker = L.marker(o.latlng).addTo(map)) });
 
     const button = document.getElementById("submit")
 
-    button.addEventListener("click", (e) => {
-
-        submitted = true;
-        markerLatLng = selection_marker.getLatLng();
-
-        const distance = haversineDistance(tile, [markerLatLng.lat, markerLatLng.lng]);
-
-        show_score(distance);
-    })
+    button.addEventListener("click", t => { submitted = !0, markerLatLng = selection_marker.getLatLng(); let e = haversineDistance(tile, [markerLatLng.lat, markerLatLng.lng]); show_score(e) });
+    
     async function start() {
-       const resp = await fetch('/place');
-       const place = await resp.json();
-
+        const excluded = get_already_chosen().map((x)=>btoa(x.name));
+        const resp = await fetch(`/place?exclude=${excluded.join(',')}`);
+        const place = await resp.json();
+        name = place.name;
         tile = place.coord;
         document.getElementById('modal-name').innerText = place.name;
         showTile(tile[0], tile[1], place.zoom);
     }
 
 
-    async function showTile(lat, lon, zoom) {
-
-
-        document.getElementById("tile-holder").innerHTML = getTile(lat, lon, zoom);
-    }
-    function getTile(lat, lon, zoom) {
+    
+    function showTile(lat, lon, zoom) {
 
 
         const x = lon2tile(lon, zoom + 1);
@@ -447,16 +410,24 @@
 
         const modifiers = [[-1, -1], [0, -1], [1, -1], [-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [1, 1]]
 
-        return `
+        document.getElementById("tile-holder").innerHTML = `
             <div style="display: flex; flex-wrap: wrap;">
                 ${modifiers.map(z => `<img src="/tile/${zoom + 1}/${x + z[0]}/${y + z[1]}" /> `).join("")}
             </div>
         `;
     }
+    function get_already_chosen() {
+        return JSON.parse(localStorage.getItem("completed") || "[]")
+    }
+    function add_already_chosen(name, score) {
+        let prev = get_already_chosen();
+        prev.push( { name, score } );  
+        localStorage.setItem("completed", JSON.stringify(prev));
+    }
     function show_score(distance) {
         const score = get_score(distance);
         confetti({ particleCount: score / 10, spread: 180 });
-
+        add_already_chosen(name, score.toFixed(0));
         document.getElementById("modal-new-score").innerText = score.toFixed(0);
         document.getElementById("modal-total-score").innerText = (prev_score + score).toFixed(0);
         document.getElementById("modal-distance").innerText = distance.toFixed(0);
