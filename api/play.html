@@ -208,7 +208,9 @@
                     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6898960062724754" data-ad-slot="6638293716"
                         data-ad-format="auto" data-full-width-responsive="true"></ins>
                     <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        window.addEventListener('load', function () {
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            })
                     </script>
                     </div>
                     <button onclick="location.reload()" id="new-game">
@@ -296,7 +298,6 @@
         document.getElementById("modal-distance").innerText = distance.toFixed(0);
         document.getElementById("guesser").style.zIndex = "-1000000000000";
         prev_score = prev_score + score;
-        window.history.pushState({}, '', location.origin + location.pathname + '?score=' + prev_score);
         MicroModal.show('modal-1');
     }
 
