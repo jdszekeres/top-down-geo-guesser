@@ -117,6 +117,9 @@ app.use(minify());
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/play.html');
 })
+app.get('/ads.txt', (req, res) => {
+  res.sendFile(__dirname + '/ads.txt');
+})
 
 app.get('/place', (req, res) => {
   const exclude = req.query.exclude.split(",") ?? [];
