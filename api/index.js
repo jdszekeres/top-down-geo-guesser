@@ -13,20 +13,20 @@ const app = express()
 const port = parseFloat(process.argv.at(-1)) || 3000;
 
 const places = [
-  { name: "LA", coord: [34, -118], zoom: 10 },
-  { name: "NYC", coord: [40.780316, -74.012000], zoom: 10 },
-  { name: "Yosemite", coord: [37.8651, -119.5383], zoom: 8 },
-  { name: "Yellowstone", coord: [44.5979, -110.5612], zoom: 8 },
-  { name: "Grand Prismatic Springs", coord: [44.525626, -110.838954], zoom: 17 },
-  { name: "Statue of Liberty", coord: [40.691290, -74.047306], zoom: 16 },
+  { name: "Los Angeles, CA", coord: [34, -118], zoom: 10 },
+  { name: "New York, NY", coord: [40.780316, -74.012000], zoom: 10 },
+  { name: "Yosemite, CA", coord: [37.8651, -119.5383], zoom: 8 },
+  { name: "Yellowstone, WY", coord: [44.5979, -110.5612], zoom: 8 },
+  { name: "Grand Prismatic Springs, WY", coord: [44.525626, -110.838954], zoom: 17 },
+  { name: "Statue of Liberty, NY", coord: [40.691290, -74.047306], zoom: 16 },
 
   //START places from Landscapes of America book
   { name: "Trunk Bay, St. John, USVI", coord: [18.353863, -64.774272], zoom: 16 },
-  { name: "Chugach NF, Alaska", coord: [61.145252, -147.291878], zoom: 10 },
+  { name: "Chugach NF, AK", coord: [61.145252, -147.291878], zoom: 10 },
   { name: "Denali, AK", coord: [63.068571, -151.007126], zoom: 12 },
-  { name: "Milolii, Hawaii", coord: [19.185407, -155.906528], zoom: 16 },
-  { name: "Laie point", coord: [21.650733, -157.920210], zoom: 14 },
-  { name: "Kilauea, Hawaii", coord: [19.409208, -155.281719], zoom: 14 },
+  { name: "Milolii, HI", coord: [19.185407, -155.906528], zoom: 16 },
+  { name: "Laie point,HI", coord: [21.650733, -157.920210], zoom: 14 },
+  { name: "Kilauea, HI", coord: [19.409208, -155.281719], zoom: 14 },
   { name: "Crater Lake", coord: [42.944695, -122.108147], zoom: 12 },
   { name: "The Great Bend, WA", coord: [47.358338, -123.118856], zoom: 8 },
   { name: "Palouse Farming Country, WA/ID", coord: [46.538175, -117.039979], zoom: 12 },
@@ -39,7 +39,7 @@ const places = [
   { name: "Yosemite Valley, CA", coord: [37.743496, -119.594237], zoom: 13 },
   { name: "Kidney Lake, CA", coord: [37.897758, -119.197783], zoom: 13 },
   { name: "Mt. Whitney, CA", coord: [36.577970, -118.293386], zoom: 9 },
-  { name: "Sailing Stones, cA", coord: [36.685018, -117.566196], zoom: 14 },
+  { name: "Sailing Stones, CA", coord: [36.685018, -117.566196], zoom: 14 },
   { name: "Petrified Forest, AZ", coord: [35.153381, -109.821374], zoom: 10 },
   { name: "Grand Canyon, AZ", coord: [36.099726, -112.105311], zoom: 14 },
   { name: "Monument Valley, AZ/UT", coord: [36.979974, -110.086320], zoom: 16 },
@@ -69,44 +69,50 @@ const places = [
   { name: "Norfolk, VA", coord: [36.925957, -76.326584], zoom: 15 },
   { name: "Washington Monument, DC", coord: [38.889514, -77.035452], zoom: 17 },
   { name: "Niagra Falls, NY", coord: [43.077532, -79.074846], zoom: 16 },
-  { name: "Cape Cod, Ma", coord: [41.806065, -69.939503], zoom: 13 },
+  { name: "Cape Cod, MA", coord: [41.806065, -69.939503], zoom: 13 },
   //END places from Landscapes of America book
 
   //START airports
-  { name: "KDEN", coord: [39.856120, -104.676363], zoom: 11 },
-  { name: "KIAD", coord: [38.951375, -77.456734], zoom: 11 },
-  { name: "KORD", coord: [41.977164, -87.905138], zoom: 12 },
-  { name: "KDFW", coord: [32.901422, -97.040242], zoom: 12 },
-  { name: "KIAH", coord: [29.987071, -95.342269], zoom: 12 },
-  { name: "KSFO", coord: [37.618685, -122.381466], zoom: 13 },
-  { name: "KMCO", coord: [28.432498, -81.308039], zoom: 12 },
-  { name: "KSLC", coord: [40.789598, -111.986876], zoom: 12 },
-  { name: "KJFK", coord: [40.644491, -73.779644], zoom: 12 },
-  { name: "KDTW", coord: [42.213021, -83.352824], zoom: 12 },
-  { name: "KLAX", coord: [33.943980, -118.402944], zoom: 12 },
-  { name: "KATL", coord: [33.640894, -84.429300], zoom: 13 },
-  { name: "KLAS", coord: [36.084905, -115.151657], zoom: 12 },
-  { name: "KCLT", coord: [35.220671, -80.949987], zoom: 13 },
-  { name: "KMIA", coord: [25.793379, -80.280183], zoom: 12 },
-  { name: "KSEA", coord: [47.449611, -122.306748], zoom: 12 },
-  { name: "KEWR", coord: [40.690134, -74.176114], zoom: 13 },
-  { name: "KPHX", coord: [33.434916, -112.011602], zoom: 13 },
-  { name: "KBOS", coord: [42.366337, -71.010630], zoom: 12 },
-  { name: "KFLL", coord: [26.071551, -80.147475], zoom: 13 },
-  { name: "KMSP", coord: [44.884802, -93.214121], zoom: 13 },
-  { name: "KLGA", coord: [40.779624, -73.874960], zoom: 13 },
-  { name: "KPHL", coord: [39.874548, -75.242144], zoom: 12 },
-  { name: "KBWI", coord: [39.179392, -76.667598], zoom: 13 },
-  { name: "KDCA", coord: [38.850885, -77.040096], zoom: 13 },
-  { name: "KSAN", coord: [32.733713, -117.190466], zoom: 13 },
-  { name: "KTPA", coord: [27.976648, -82.530300], zoom: 12 },
-  { name: "KBNA", coord: [36.123753, -86.677396], zoom: 13 },
-  { name: "KAUS", coord: [30.196699, -97.666407], zoom: 13 },
-  { name: "KMDW", coord: [41.785597, -87.752084], zoom: 13 },
-  { name: "KHNL", coord: [21.315290, -157.926407], zoom: 13 },
-  { name: "KANC", coord: [61.176267, -149.991052], zoom: 12 },
-  { name: "KVCV", coord: [34.591923, -117.380446], zoom: 12 }
+  { name: "Denver International Airport", coord: [39.856120, -104.676363], zoom: 11 },
+  { name: "Washington Dulles International Airport", coord: [38.951375, -77.456734], zoom: 11 },
+  { name: "Chicago O'Hare International Airport", coord: [41.977164, -87.905138], zoom: 12 },
+  { name: "Dallas Fort Worth International Airport", coord: [32.901422, -97.040242], zoom: 12 },
+  { name: "George Bush Intercontinental Airport", coord: [29.987071, -95.342269], zoom: 12 },
+  { name: "San Francisco International Airport", coord: [37.618685, -122.381466], zoom: 13 },
+  { name: "Orlando International Airport", coord: [28.432498, -81.308039], zoom: 12 },
+  { name: "Salt Lake City International Airport", coord: [40.789598, -111.986876], zoom: 12 },
+  { name: "John F. Kennedy International Airport", coord: [40.644491, -73.779644], zoom: 12 },
+  { name: "Detroit Metropolitan Wayne County Airport", coord: [42.213021, -83.352824], zoom: 12 },
+  { name: "Los Angeles International Airport", coord: [33.943980, -118.402944], zoom: 12 },
+  { name: "Hartsfield-Jackson Atlanta International Airport", coord: [33.640894, -84.429300], zoom: 13 },
+  { name: "Harry Reid International Airport", coord: [36.084905, -115.151657], zoom: 12 },
+  { name: "Charlotte Douglas International Airport", coord: [35.220671, -80.949987], zoom: 13 },
+  { name: "Miami International Airport", coord: [25.793379, -80.280183], zoom: 12 },
+  { name: "Seattle-Tacoma International Airport", coord: [47.449611, -122.306748], zoom: 12 },
+  { name: "Newark Liberty International Airport", coord: [40.690134, -74.176114], zoom: 13 },
+  { name: "Phoenix Sky Harbor International Airport", coord: [33.434916, -112.011602], zoom: 13 },
+  { name: "Boston Logan International Airport", coord: [42.366337, -71.010630], zoom: 12 },
+  { name: "Fort Lauderdale-Hollywood International Airport", coord: [26.071551, -80.147475], zoom: 13 },
+  { name: "Minneapolis-Saint Paul International Airport", coord: [44.884802, -93.214121], zoom: 13 },
+  { name: "LaGuardia Airport", coord: [40.779624, -73.874960], zoom: 13 },
+  { name: "Philadelphia International Airport", coord: [39.874548, -75.242144], zoom: 12 },
+  { name: "Baltimore/Washington International Airport", coord: [39.179392, -76.667598], zoom: 13 },
+  { name: "Ronald Reagan Washington National Airport", coord: [38.850885, -77.040096], zoom: 13 },
+  { name: "San Diego International Airport", coord: [32.733713, -117.190466], zoom: 13 },
+  { name: "Tampa International Airport", coord: [27.976648, -82.530300], zoom: 12 },
+  { name: "Nashville International Airport", coord: [36.123753, -86.677396], zoom: 13 },
+  { name: "Austin-Bergstrom International Airport", coord: [30.196699, -97.666407], zoom: 13 },
+  { name: "Chicago Midway International Airport", coord: [41.785597, -87.752084], zoom: 13 },
+  { name: "Daniel K. Inouye International Airport", coord: [21.315290, -157.926407], zoom: 13 },
+  { name: "Ted Stevens Anchorage International Airport", coord: [61.176267, -149.991052], zoom: 12 },
+  { name: "Southern California Logistics Airport", coord: [34.591923, -117.380446], zoom: 12 },
   //END airports
+
+  // Add custom
+  { name: "Outer Banks, NC", coord: [36.090273, -75.704495], zoom: 11 },
+  { name: "Bushton, KS", coord: [38.521928, -98.391829], zoom: 11 },
+  { name: "Isle Royale, MI", coord: [48.016546, -88.858177], zoom: 9 },
+  { name: "Great Salt Lake, UT", coord: [41.196885, -112.559952], zoom: 8 }
 ]
 
 app.use(bodyParser.json())
@@ -126,6 +132,7 @@ app.get('/place', (req, res) => {
   const to_chose = places.filter((x) => !exclude.includes(btoa(x.name)));
 
   res.setHeader('Content-Type', 'application/json');
+
   const chosen = to_chose[Math.floor(Math.random() * to_chose.length)];
   // const chosen = places.at(-1);
   res.end(JSON.stringify(chosen));
