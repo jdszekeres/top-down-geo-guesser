@@ -19,6 +19,13 @@
         crossorigin="anonymous"></script>
 
     <style>
+        figure{height:200px;display:-ms-flex;display:-webkit-flex;display:flex}figure button[name=play]{width:10em;height:10em;background:green;border:none;border-radius:100%;margin:auto;cursor:pointer}figure button[name=play]:focus{outline:0;border:1px solid #82afdd;box-shadow:0 0 0 3px hsla(210,76%,57%,.5)}figure button[name=play]::after{content:'';display:inline-block;position:relative;top:1px;left:3px;border-style:solid;border-width:10px 0 10px 20px;border-color:transparent transparent transparent #fff}
+        
+        button[name="play"] {
+            /* animation: bounce-ease-in 3s cubic-bezier(.47,0,.74,.71) infinite */
+            animation: upDown 1.5s alternate infinite ease-in-out;
+        }
+
         h1 {
             text-align: center;
             transform: rotateX(300deg);
@@ -66,6 +73,18 @@
         p {
             color: white
         }
+
+        @keyframes bounce-ease-in {
+        0%  {transform: translate(0, 0);}
+        33% {transform: translate(0, 10px);}
+        66% {transform: translate(0, -10px);}
+        100% {transform: translate(0,0);}
+        }
+        @keyframes upDown {
+            from {transform: translateY(-10px) rotateZ(0deg);}
+            to { transform: translatey(10px) rotateZ(360deg);}
+        }
+
     </style>
 </head>
 <body>
@@ -74,7 +93,9 @@
     </div>
 
     <div class="play_button">
-        <a type="button" class="play" href="/play"><p>Play</p></a>
+        <figure>
+            <button name="play"></button>
+        </figure>
     </div>
 
     <div class="content">
