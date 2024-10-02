@@ -121,6 +121,9 @@ app.use(minify());
 
 
 app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/start.html');
+})
+app.get('/play', (req, res) => {
   res.sendFile(__dirname + '/play.html');
 })
 app.get('/ads.txt', (req, res) => {
