@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Down Geo Guesser</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2245%22>🌄🏖</text><text y=%221.8em%22 font-size=%2245%22>🛬🛣</text></svg>">
     <meta property="twitter:image" content="/tile/11/186/581">
     <meta property="og:image" content="/tile/11/186/581">
     <meta property="twitter:card" content="summary_large_image">
@@ -17,12 +18,46 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6898960062724754"
         crossorigin="anonymous"></script>
-
     <style>
-        figure{height:200px;display:-ms-flex;display:-webkit-flex;display:flex}figure button[name=play]{width:10em;height:10em;background:green;border:none;border-radius:100%;margin:auto;cursor:pointer}figure button[name=play]:focus{outline:0;border:1px solid #82afdd;box-shadow:0 0 0 3px hsla(210,76%,57%,.5)}figure button[name=play]::after{content:'';display:inline-block;position:relative;top:1px;left:3px;border-style:solid;border-width:10px 0 10px 20px;border-color:transparent transparent transparent #fff}
+        figure {
+	height: 200px;
+	display: -ms-flex;
+	display: -webkit-flex;
+	display: flex
+}
+
+figure button[name=play] {
+	width: 10em;
+	height: 10em;
+	background-image: url('/tile/9/59/147'); /*Alaskan forest*/
+	border: none;
+	border-radius: 100%;
+	margin: auto 0;
+	cursor: pointer
+}
+
+figure button[name=play]:hover {
+	outline: 0;
+	border: 1px solid #82afdd;
+	box-shadow: 0 0 0 3px hsla(210, 76%, 57%, .5)
+}
+
+figure button[name=play]::after {
+	content: '';
+	display: inline-block;
+	position: relative;
+	top: 1px;
+	left: 3px;
+	border-style: solid;
+	border-width: 20px 0 20px 40px;
+	border-color: transparent transparent transparent green;
+}
+    </style>
+    <style>
         
         button[name="play"] {
             /* animation: bounce-ease-in 3s cubic-bezier(.47,0,.74,.71) infinite */
+            transform-origin: center center;
             animation: upDown 1.5s alternate infinite ease-in-out;
         }
 
@@ -71,18 +106,15 @@
             }
 
         p {
-            color: white
+            color: white;
+            font-size: medium;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         }
 
-        @keyframes bounce-ease-in {
-        0%  {transform: translate(0, 0);}
-        33% {transform: translate(0, 10px);}
-        66% {transform: translate(0, -10px);}
-        100% {transform: translate(0,0);}
-        }
+
         @keyframes upDown {
-            from {transform: translateY(-10px) rotateZ(-180deg);}
-            to { transform: translatey(10px) rotateZ(180deg);}
+            from {transform: translateY(-10px) rotateZ(0deg);}
+            to { transform: translatey(10px) rotateZ(0deg);}
         }
 
     </style>
@@ -102,7 +134,7 @@
         <p>
             In this captivating geography-based game, players are tasked with identifying the locations of random satellite photos
             taken from various iconic spots across the United States. The images come from a diverse selection of sources, including
-            breathtaking aerial views featured in Bill Harris' Landscapes of America and detailed satellite captures of the 30
+            breathtaking aerial views featured in Bill Harris' <cite>Landscapes of America</cite> and detailed satellite captures of the 30
             largest airports in the country. Whether players are zooming in on famous natural wonders or sprawling urban hubs, each
             photo provides a unique challenge that tests their knowledge of the U.S. landscape.
         </p>
@@ -112,6 +144,14 @@
             and urban layouts—to make their best guesses. Not only does the game provide entertainment, but it also fosters a deeper
             appreciation for the country's natural and man-made landmarks, making it a fun educational tool for geography
             enthusiasts and casual gamers alike.
+        </p>
+
+        <p>
+            <cite>Landcapes of America</cite> is a photography book containing 300+ photos of the terrain and scenery across America. The book higlights the diversity and beauty of America both as a whole and state by state. When viewing such photos, it is important to focus on reigonal landmarks, such as bodies of water, and the topography of the area.
+        </p>
+
+        <p>
+            This dataset also includes aerial photography of major US airports to further one's appreciation of the scale and extent of air travel within the United States. You'll find that though they share common features, no two airports are exactly alike. Important features to take note of are the runway numbers (ex. 09/27) and terminal design.
         </p>
     </div>
 </body>
