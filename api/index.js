@@ -112,7 +112,15 @@ const places = [
   { name: "Outer Banks, NC", coord: [36.090273, -75.704495], zoom: 11 },
   { name: "Bushton, KS", coord: [38.521928, -98.391829], zoom: 11 },
   { name: "Isle Royale, MI", coord: [48.016546, -88.858177], zoom: 9 },
-  { name: "Great Salt Lake, UT", coord: [41.196885, -112.559952], zoom: 8 }
+  { name: "Great Salt Lake, UT", coord: [41.196885, -112.559952], zoom: 8 },
+  { name: "Catalina Island, CA", coord: [33.381183, -118.415483], zoom: 11 },
+  { name: "Craters of the Moon, ID", coord: [43.269289, -113.565021], zoom: 10 },
+  { name: "Bald Eagle State Forest, PA", coord: [40.795528, -77.451816], zoom: 9 },
+  { name: "Acadia National Park, ME", coord: [44.344444, -68.255498], zoom: 12 },
+  { name: "Central Park, NY", coord: [40.781497, -73.968293], zoom: 13 },
+  { name: "Telluride, CO", coord: [37.838306, -107.546123], zoom: 9 },
+  { name: "Lake Havasu, AZ/CA", coord: [34.484007, -114.382280], zoom: 11 },
+
 ]
 
 app.use(bodyParser.json())
