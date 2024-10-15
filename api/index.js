@@ -120,6 +120,11 @@ const places = [
   { name: "Central Park, NY", coord: [40.781497, -73.968293], zoom: 13 },
   { name: "Telluride, CO", coord: [37.838306, -107.546123], zoom: 9 },
   { name: "Lake Havasu, AZ/CA", coord: [34.484007, -114.382280], zoom: 11 },
+  { name: "Glacier, MT", coord: [48.755566, -113.739820], zoom: 12 },
+  { name: "New Orleans, LA", coord: [29.931093, -90.149335], zoom: 10 },
+  { name: "Twin Falls, ID", coord: [42.549272, -114.283721], zoom: 8 },
+  { name: "Wake Island", coord: [19.298632, 166.626125], zoom: 13 },
+  { name: "Amarillo, TX", coord: [35.193425, -101.836798], zoom: 11 }
 
 ]
 

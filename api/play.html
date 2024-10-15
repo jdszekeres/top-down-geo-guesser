@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2245%22>🌄🏖</text><text y=%221.8em%22 font-size=%2245%22>🛬🛣</text></svg>">
+    <link rel="icon" type="image/png" href="https://www.gstatic.com/android/keyboard/emojikitchen/20240206/u1f304/u1f304_u1f5bc-ufe0f.png" />
     <meta property="twitter:image" content="/tile/11/186/581">
     <meta property="og:image" content="/tile/11/186/581">
     <meta property="twitter:card" content="summary_large_image">
@@ -22,149 +22,179 @@
 
     <style>
         .ad {
-            min-width: 100px;
-            min-height: 100px;
-            display: block;
-        }
-        .map {
-            width: 50%;
-            height: 480px;
-        }
+	min-width: 100px;
+	min-height: 100px;
+	display: block;
+}
 
-        h1 {
-            text-align: center;
-            transform: rotateX(300deg);
-            font-weight: 900;
-            font-size: 80px;
-            margin: 0px;
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+.map {
+	width: 50%;
+	height: 480px;
+}
 
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            background-image: url('https://jdszekeres.github.io/geography.gif');
-        }
+h1 {
+	text-align: center;
+	transform: rotateX(300deg);
+	font-weight: 900;
+	font-size: 80px;
+	margin: 0px;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
-        .header {
-            width: 100%;
-            height: 110px;
-            margin: 0px;
-        }
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
+	background-image: url('https://jdszekeres.github.io/geography.gif');
+}
 
-        .prompt {
-            width: 100%;
-            height: calc(100% - 110px);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            z-index: 1;
-        }
+.header {
+	width: 100%;
+	height: 110px;
+	margin: 0px;
+}
 
-        .asker {
-            text-align: center;
-            width: 100%;
-        }
+.prompt {
+	padding-top: 5%;
+	width: 100%;
+	height: calc(100% - 110px);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	z-index: 1;
+}
 
-        #tile-holder {
-            width: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.asker {
+	text-align: center;
+	width: 100%;
+}
 
-        #tile-holder>div {
-            width: 80%;
-            padding: 10%;
-        }
+#tile-holder {
+	width: 600px;
+	height: 600px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
-        #tile-holder>div>img {
-            width: calc(100% / 3);
-        }
+#tile-holder>div {
+	width: 80%;
+	padding: 10%;
+}
 
-        .map {
-            width: 400px;
-            height: 200px;
-            
-        }
-        .map-holder {
-            position: sticky;
-            width: 400px;
-            bottom: 5%;
-            right: 5%;
-        }
-        .submit {
-            width: 100%;
-            margin: 5px;
-            padding: 16px 4px;
-            border: 0px;
-            border-radius: 45px;
-            background-color: rgba(12, 246, 11, .8);
-        }
-        .submit:disabled {
-            background-color: grey;
-        }
+#tile-holder>div>img {
+	width: 200px;
+	height: 200px;
+}
 
-        
+.map {
+	width: 400px;
+	height: 200px;
 
-        canvas {
-            z-index: 10000000000000000000000000000000000000;
-        }
+}
 
-        body {
-                background: rgb(12, 2, 25);
-            }
+.map-holder {
+	position: sticky;
+	width: 400px;
+	bottom: 5%;
+	right: 5%;
+}
+
+.submit {
+	width: 100%;
+	margin: 5px;
+	padding: 16px 4px;
+	border: 0px;
+	border-radius: 45px;
+	background-color: rgba(12, 246, 11, .8);
+}
+
+.submit:disabled {
+	background-color: grey;
+}
 
 
-        
+canvas {
+	z-index: 10000000000000000000000000000000000000;
+}
+
+body {
+	background: rgb(12, 2, 25);
+}
+
+
 .filler {
-    text-align: center;
-    color: gray;
-    font-weight: 900;
+	text-align: center;
+	color: gray;
+	font-weight: 900;
 }
+
 #scale {
-    width: 100%;
-    text-align: center;
-    color: grey
+	width: 100%;
+	text-align: center;
+	color: blue;
+	font-weight: 900;
+	font-size: 2em;
+	position: absolute;
+	bottom: 0;
 }
-            
 
-            h2 {
-                color: rgb(216, 228, 214)
-            }
-        
+#scale>span:nth-child(1) {
+	position: absolute;
+	left: 0;
+}
 
-        #new-game {
-            border-radius: 4px;
-            border: 0px;
-            background-color: greenyellow;
-            font-weight: 900;
-            font-size: 28px;
-        }
-        @media only screen and (max-width:767px) {
-    .header {
-        height: unset;
-    }
-    h2 {margin: 0px; font-size: larger;}
-    h1 {font-size: xx-large;}
-    .map-holder {
-        width: 80%;
-        padding: 10%;
-        margin-top: 10%;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        bottom: 0;
-    }
-    #tile-holder {
-            width: 100%;
-            
-        }
-        #tile-holder > div {
-            padding: 0px;
-        }
+#scale>span:nth-child(3) {
+	position: absolute;
+	right: 0
+}
 
-}   
+h2 {
+	color: rgb(216, 228, 214)
+}
+
+
+#new-game {
+	border-radius: 4px;
+	border: 0px;
+	background-color: greenyellow;
+	font-weight: 900;
+	font-size: 28px;
+}
+
+@media only screen and (max-width:767px) {
+	.header {
+		height: unset;
+	}
+
+	h2 {
+		margin: 0px;
+		font-size: larger;
+	}
+
+	h1 {
+		font-size: xx-large;
+	}
+
+	.map-holder {
+		width: 80%;
+		padding: 10%;
+		margin-top: 10%;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		bottom: 0;
+	}
+
+	#tile-holder {
+		width: 100%;
+
+	}
+
+	#tile-holder>div {
+		padding: 0px;
+	}
+
+}  
     </style>
     <!--modal styling - do not touch-->
     <style>.micromodal-slide .modal__container,.micromodal-slide .modal__overlay,.modal__btn{will-change:transform}.modal{font-family:-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif}.modal__overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);display:flex;justify-content:center;align-items:center}.modal__container{background-color:#fff;padding:30px;max-width:500px;max-height:100vh;border-radius:4px;overflow-y:auto;box-sizing:border-box}.modal__header{display:flex;justify-content:space-between;align-items:center}.modal__title{margin-top:0;margin-bottom:0;font-weight:600;font-size:1.25rem;line-height:1.25;color:#00449e;box-sizing:border-box}.modal__close{background:0 0;border:0}.modal__header .modal__close:before{content:"\2715"}.modal__content{margin-top:2rem;margin-bottom:2rem;line-height:1.5;color:rgba(0,0,0,.8)}.modal__btn{font-size:.875rem;padding:.5rem 1rem;background-color:#e6e6e6;color:rgba(0,0,0,.8);border-radius:.25rem;border-style:none;border-width:0;cursor:pointer;-webkit-appearance:button;appearance:button;text-transform:none;overflow:visible;line-height:1.15;margin:0;-moz-osx-font-smoothing:grayscale;-webkit-backface-visibility:hidden;backface-visibility:hidden;-webkit-transform:translateZ(0);transform:translateZ(0);transition:transform .25s ease-out;transition:transform .25s ease-out,-webkit-transform .25s ease-out}.modal__btn:focus,.modal__btn:hover{-webkit-transform:scale(1.05);transform:scale(1.05)}.modal__btn-primary{background-color:#00449e;color:#fff}@keyframes mmfadeIn{from{opacity:0}to{opacity:1}}@keyframes mmfadeOut{from{opacity:1}to{opacity:0}}@keyframes mmslideIn{from{transform:translateY(15%)}to{transform:translateY(0)}}@keyframes mmslideOut{from{transform:translateY(0)}to{transform:translateY(-10%)}}.micromodal-slide{display:none}.micromodal-slide.is-open{display:block}.micromodal-slide[aria-hidden=false] .modal__overlay{animation:.3s cubic-bezier(0,0,.2,1) mmfadeIn}.micromodal-slide[aria-hidden=false] .modal__container{animation:.3s cubic-bezier(0,0,.2,1) mmslideIn}.micromodal-slide[aria-hidden=true] .modal__overlay{animation:.3s cubic-bezier(0,0,.2,1) mmfadeOut}.micromodal-slide[aria-hidden=true] .modal__container{animation:.3s cubic-bezier(0,0,.2,1) mmslideOut}</style>
@@ -238,7 +268,8 @@
 <script>
     const pixel_m_scale={0:156543,1:78272,2:39136,3:19568,4:9784,5:4892,6:2446,7:1223,8:611.496,9:305.748,10:152.874,11:76.437,12:38.219,13:19.109,14:9.555,15:4.777,16:2.389,17:1.194,18:.597,19:.299,20:.149};
 
-    const get_zoom_scale = (zoom) => pixel_m_scale[zoom] * 3 * 256
+    const get_zoom_scale = (zoom, lat) => pixel_m_scale[zoom] * Math.cos(lat*(Math.PI/180)) * (3*256)
+    
 
     var map = L.map('guesser').setView([36.03958956279518, -101.07421875], 2);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
@@ -299,11 +330,13 @@
         const modifiers = [[-1, -1], [0, -1], [1, -1], [-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [1, 1]]
 
         document.getElementById("tile-holder").innerHTML = `
-            <div style="display: flex; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap; position: relative; width: 600px;  height: 600px; padding: 0px">
                 ${modifiers.map(z => `<img src="/tile/${zoom + 1}/${x + z[0]}/${y + z[1]}" /> `).join("")}
 
                 <div id="scale">
-                    Image width: ${get_zoom_scale(zoom).toFixed(0)}m
+                    <span>←</span>
+                    <span>${(get_zoom_scale(zoom+1, lat)/1000).toFixed(0)}km</span>
+                    <span>→</span>
                 </div>
             </div>
         `;
