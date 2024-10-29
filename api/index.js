@@ -158,8 +158,8 @@ app.get('/place', (req, res) => {
 
   res.setHeader('Content-Type', 'application/json');
 
-  // const chosen = to_chose[Math.floor(Math.random() * to_chose.length)];
-  const chosen = places.at(-1);
+  const chosen = to_chose[Math.floor(Math.random() * to_chose.length)];
+  // const chosen = places.at(-1);
   res.end(JSON.stringify(chosen));
 
 })
