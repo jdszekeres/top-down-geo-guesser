@@ -124,7 +124,16 @@ const places = [
   { name: "New Orleans, LA", coord: [29.931093, -90.149335], zoom: 10 },
   { name: "Twin Falls, ID", coord: [42.549272, -114.283721], zoom: 8 },
   { name: "Wake Island", coord: [19.298632, 166.626125], zoom: 13 },
-  { name: "Amarillo, TX", coord: [35.193425, -101.836798], zoom: 11 }
+  { name: "Amarillo, TX", coord: [35.193425, -101.836798], zoom: 11 },
+  { name: "Burlington, VT", coord: [44.472372, -73.224245], zoom: 12 },
+  { name: "Salt Deposits, OK", coord: [36.800436, -99.255642], zoom: 14 },
+  { name: "American Samoa", coord: [-14.231865, -169.464428], zoom: 12 },
+  { name: "Razorback Ridge, NV", coord: [36.161564, -114.952700], zoom: 12 },
+  { name: "Springfield, IL", coord: [39.782005, -89.654224], zoom: 11 },
+  { name: "Oscura Peak, NM", coord: [33.64570125671293, -106.37230247669329], zoom: 8 },
+  { name: "Packers, MT", coord: [47.485916403657775, -112.87715308183171], zoom: 8 },
+  { name: "Providence, RI", coord: [41.823403561631046, -71.41527022938493], zoom: 13 },
+  { name: "Sand Hills, NE", coord: [42.01221699186615, -101.50825724087578], zoom: 9 }
 
 ]
 
@@ -149,8 +158,8 @@ app.get('/place', (req, res) => {
 
   res.setHeader('Content-Type', 'application/json');
 
-  const chosen = to_chose[Math.floor(Math.random() * to_chose.length)];
-  // const chosen = places.at(-1);
+  // const chosen = to_chose[Math.floor(Math.random() * to_chose.length)];
+  const chosen = places.at(-1);
   res.end(JSON.stringify(chosen));
 
 })

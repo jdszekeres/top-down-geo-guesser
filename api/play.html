@@ -281,10 +281,10 @@ h2 {
     var tile;
     var name = "";
     var prev_score = get_already_chosen().reduce((x,y)=>x+parseFloat(y.score), 0);
-    const near_val = 606.5;
+    const near_val = 300;
     const max_score = 5000;
 
-    const get_score = (distance) => max_score * Math.exp(-0.5 * (distance / near_val) ** 2);
+    const get_score = (distance) => max_score * Math.exp(-0.5 * (distance / near_val) ** 3);
 
     const lon2tile = (lon, zoom) => (Math.floor((lon + 180) / 360 * Math.pow(2, zoom)));
     const lat2tile = (lat, zoom) => (Math.floor((1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom)));
