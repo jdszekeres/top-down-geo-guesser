@@ -157,7 +157,8 @@ const places = [
   { name: "Guadalupe Peak, TX", coord: [31.891409177613205, -104.86036989752688], zoom: 12 },
   { name: "Red Rocks Ampitheater, CO", coord: [39.665535270784126, -105.20525813224204], zoom: 15 },
   { name: "San Antonio Riverwalk, TX", coord: [29.4230286127562, -98.4860651786013], zoom: 18 },
-  { name: "Sedona, AZ", coord: [34.861318964651005, -111.8009766203689], zoom: 12 }
+  { name: "Sedona, AZ", coord: [34.861318964651005, -111.8009766203689], zoom: 12 },
+  { name: "Cape Canaveral, FL", coord: [28.458611978033517, -80.573866567547], zoom: 12 }
 ]
 
 app.use(bodyParser.json())
