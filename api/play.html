@@ -241,7 +241,7 @@ h2 {
 
 <body>
     <div class="header">
-        <h1><a href='/'>Geography Guesser</a></h1>
+        <h1><a href='/' style="text-decoration: none;">Geography Guesser</a></h1>
         <h2 class="asker">guess where this is:</h2>
     </div>
 
@@ -359,14 +359,14 @@ h2 {
         const y = lat2tile(lat, zoom + 1);
 
         const modifiers = [[-1, -1], [0, -1], [1, -1], [-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [1, 1]]
-
+        const scale = get_zoom_scale(zoom+1, lat)/1000;
         document.getElementById("tile-holder").innerHTML = `
             <div id="fitter">
                 ${modifiers.map(z => `<img src="/tile/${zoom + 1}/${x + z[0]}/${y + z[1]}" /> `).join("")}
 
                 <div id="scale">
                     <span>←</span>
-                    <span>${(get_zoom_scale(zoom+1, lat)/1000).toFixed(0)}km</span>
+                    <span>${scale.toFixed(scale>0.5?0:2)}km</span>
                     <span>→</span>
                 </div>
             </div>

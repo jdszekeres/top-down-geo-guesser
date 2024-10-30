@@ -144,7 +144,20 @@ const places = [
   { name: "Cape Romain, SC", coord: [33.04363721234604, -79.42270370695205], zoom: 11 },
   { name: "Harpers Ferry, WV", coord: [39.33132346288803, -77.75044327804277], zoom: 11 },
   { name: "Norwalk Islands, CT", coord: [41.05681754737773, -73.39827095448827], zoom: 13 },
-  { name: "Mt. Washington, NH", coord: [44.270455850077774, -71.30201357921412], zoom: 10 }
+  { name: "Mt. Washington, NH", coord: [44.270455850077774, -71.30201357921412], zoom: 10 },
+  { name: "Portland, OR", coord: [45.52664654739934, -122.56887156175196], zoom: 10 },
+  { name: "Minneapolis, MN", coord: [44.97823094257988, -93.25906787183682], zoom: 11 },
+  { name: "Spanish Peak, CO", coord: [37.37849440593033, -104.9880448422858], zoom: 11 },
+  { name: "Garden of the Gods, CO", coord: [38.880734312623844, -104.90233967803316], zoom: 13 },
+  { name: "Cumberland, GA", coord: [30.870101249184852, -81.55599414149906], zoom: 10 },
+  { name: "Napali Coast, HI", coord: [22.160238834942323, -159.65362571718555], zoom: 12 },
+  { name: "Duck Creek, UT", coord: [37.5254566031363, -112.66602528459538], zoom: 13 },
+  { name: "Castle Rock Badlands, KS", coord: [38.85843031077057, -100.17124667987845], zoom: 14 },
+  { name: "Going to the Sun Rd, MT", coord: [48.69175954130802, -113.63720882045047], zoom: 12 },
+  { name: "Guadalupe Peak, TX", coord: [31.891409177613205, -104.86036989752688], zoom: 12 },
+  { name: "Red Rocks Ampitheater, CO", coord: [39.665535270784126, -105.20525813224204], zoom: 15 },
+  { name: "San Antonio Riverwalk, TX", coord: [29.4230286127562, -98.4860651786013], zoom: 18 },
+  { name: "Sedona, AZ", coord: [34.861318964651005, -111.8009766203689], zoom: 12 }
 ]
 
 app.use(bodyParser.json())
