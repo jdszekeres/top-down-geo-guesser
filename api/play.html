@@ -49,14 +49,15 @@ h1 {
 
 .header {
 	width: 100%;
-	height: 110px;
+	height: 150px;
 	margin: 0px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .prompt {
-	padding-top: 5%;
+	padding-top: 1em;
 	width: 100%;
-	height: calc(100% - 110px);
+	height: calc(100% - 150px);
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -76,10 +77,7 @@ h1 {
 	align-items: center;
 }
 
-#tile-holder>div {
-	width: 80%;
-	padding: 10%;
-}
+
 
 #tile-holder>div>img {
 	width: 200px;
@@ -126,16 +124,21 @@ body {
 	text-align: center;
 	color: gray;
 	font-weight: 900;
-}
+    margin: 0px;
 
+}
+.asker {
+    margin: 0px;
+}
 #scale {
 	width: 100%;
 	text-align: center;
-	color: blue;
+	color: white;
 	font-weight: 900;
 	font-size: 2em;
 	position: absolute;
-	bottom: 0;
+	bottom: 0px;
+    background-color: rgba(0,0,0,.4);
 }
 
 #scale>span:nth-child(1) {
@@ -161,6 +164,16 @@ h2 {
 	font-size: 28px;
 }
 
+#fitter {
+    width: 100%; 
+    height: 100%; 
+    position: relative; 
+    display: grid;
+    padding: 0px !important; 
+    grid-template-columns: repeat(3, 200px); 
+    grid-template-rows: repeat(3, 200px); 
+}
+
 @media only screen and (max-width:767px) {
 	.header {
 		height: unset;
@@ -177,22 +190,41 @@ h2 {
 
 	.map-holder {
 		width: 80%;
-		padding: 10%;
-		margin-top: 10%;
+		/* padding: 10%; */
+		margin-top: 10% !important;
+        margin: auto;
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
 		bottom: 0;
+        position: unset;
 	}
 
 	#tile-holder {
-		width: 100%;
+		width: 99vw;
+        height: 99vw;
+        padding: 0px;
+        justify-content: left;
 
 	}
-
+    #scale {
+        width: 100vw;
+    }
 	#tile-holder>div {
 		padding: 0px;
+        width: calc(99vw / 3)
 	}
+    #tile-holder>div>img {
+        width: calc(99vw / 3);
+        height: calc(99vw / 3);
+    }
+    #fitter {
+        grid-template-columns: repeat(3, 33vw); 
+        grid-template-rows: repeat(3, 33vw);
+    }
+    body {
+        margin: 0px
+    }
 
 }  
     </style>
@@ -209,8 +241,7 @@ h2 {
 
 <body>
     <div class="header">
-        <h1>Geography Guesser</h1>
-        <p class="filler">Geography guesser lets you to hone your US geography skills. Various satelite imagery will show up and you must select the location on the accompaning map.</p>
+        <h1><a href='/'>Geography Guesser</a></h1>
         <h2 class="asker">guess where this is:</h2>
     </div>
 
@@ -330,7 +361,7 @@ h2 {
         const modifiers = [[-1, -1], [0, -1], [1, -1], [-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [1, 1]]
 
         document.getElementById("tile-holder").innerHTML = `
-            <div style="display: flex; flex-wrap: wrap; position: relative; width: 600px;  height: 600px; padding: 0px">
+            <div id="fitter">
                 ${modifiers.map(z => `<img src="/tile/${zoom + 1}/${x + z[0]}/${y + z[1]}" /> `).join("")}
 
                 <div id="scale">

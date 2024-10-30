@@ -133,8 +133,18 @@ const places = [
   { name: "Oscura Peak, NM", coord: [33.64570125671293, -106.37230247669329], zoom: 8 },
   { name: "Packers, MT", coord: [47.485916403657775, -112.87715308183171], zoom: 8 },
   { name: "Providence, RI", coord: [41.823403561631046, -71.41527022938493], zoom: 13 },
-  { name: "Sand Hills, NE", coord: [42.01221699186615, -101.50825724087578], zoom: 9 }
-
+  { name: "Sand Hills, NE", coord: [42.01221699186615, -101.50825724087578], zoom: 9 },
+  { name: "Lake Elsinore, CA", coord: [33.65894855975331, -117.3542079945401], zoom: 12 },
+  { name: "Ozarks, AR", coord: [35.78165966673931, -93.25231825627677], zoom: 8 },
+  { name: "Fargo, ND", coord: [46.84612547084876, -96.84226623686048], zoom: 10 },
+  { name: "Cedar Rapaids, IA", coord: [41.9776063058558, -91.67111382748844], zoom: 11 },
+  { name: "Daniel Boon NF, KY", coord: [37.13102918008016, -84.10530389031247], zoom: 10 },
+  { name: "Indianapolis Speedway, IN", coord: [39.79497753468991, -86.23498209233215], zoom: 14 },
+  { name: "Tennesee River, AL", coord: [34.772416735643915, -87.3172653938344], zoom: 9 },
+  { name: "Cape Romain, SC", coord: [33.04363721234604, -79.42270370695205], zoom: 11 },
+  { name: "Harpers Ferry, WV", coord: [39.33132346288803, -77.75044327804277], zoom: 11 },
+  { name: "Norwalk Islands, CT", coord: [41.05681754737773, -73.39827095448827], zoom: 13 },
+  { name: "Mt. Washington, NH", coord: [44.270455850077774, -71.30201357921412], zoom: 10 }
 ]
 
 app.use(bodyParser.json())
@@ -187,10 +197,19 @@ app.get('/tile/:zoom/:x/:y', (req, res) => {
 
     }
   })
-
-
-
 });
+
+app.get('/geojson', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify({
+    type: "FeatureCollection",
+    features: places.map(x => ({
+      type: "Feature",
+      properties: { name: x.name },
+      geometry: { type: "Point", coordinates: x.coord.reverse() }
+    }))
+  }));
+})
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`)

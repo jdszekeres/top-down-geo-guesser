@@ -54,7 +54,9 @@ figure button[name=play]::after {
 }
     </style>
     <style>
-        
+        body {
+            overflow-x: hidden !important;
+        }
         button[name="play"] {
             /* animation: bounce-ease-in 3s cubic-bezier(.47,0,.74,.71) infinite */
             transform-origin: center center;
@@ -74,6 +76,18 @@ figure button[name=play]::after {
             background-clip: text;
             color: transparent;
             background-image: url('https://jdszekeres.github.io/geography.gif');
+        }
+        h2 {
+            color: red;
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-weight: 900;
+            text-align: center;
+            font-size: 32px;
+            animation: scale 10s ease-in-out infinite;
+        }
+        #cnt {
+            font-size: 64px;
         }
 
         .header {
@@ -116,6 +130,17 @@ figure button[name=play]::after {
             from {transform: translateY(-10px) rotateZ(0deg);}
             to { transform: translatey(10px) rotateZ(0deg);}
         }
+        @keyframes scale {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
 
     </style>
 </head>
@@ -130,6 +155,7 @@ figure button[name=play]::after {
         </figure>
     </div>
 
+    <h2><span id="cnt">124</span><br> locations to guess<br>Can you guess them all?</h2>
     <div class="content">
         <p>
             In this captivating geography-based game, players are tasked with identifying the locations of random satellite photos
@@ -145,6 +171,8 @@ figure button[name=play]::after {
             appreciation for the country's natural and man-made landmarks, making it a fun educational tool for geography
             enthusiasts and casual gamers alike.
         </p>
+
+        
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6898960062724754"
     crossorigin="anonymous"></script>
 <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid"
@@ -158,6 +186,10 @@ figure button[name=play]::after {
 
         <p>
             This dataset also includes aerial photography of major US airports to further one's appreciation of the scale and extent of air travel within the United States. You'll find that though they share common features, no two airports are exactly alike. Important features to take note of are the runway numbers (ex. 09/27) and terminal design.
+        </p>
+        <p>
+            Because having less than 100 locations wouldn't be enough, I've taken the liberty of adding some of my favorite
+            places from across the country as well as random locations on Google Maps to make the game more interesting. In total, all 50 states are represented as well as 3 US territories.
         </p>
     </div>
 </body>
