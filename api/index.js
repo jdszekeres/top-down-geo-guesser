@@ -158,9 +158,15 @@ const places = [
   { name: "Red Rocks Ampitheater, CO", coord: [39.665535270784126, -105.20525813224204], zoom: 15 },
   { name: "San Antonio Riverwalk, TX", coord: [29.4230286127562, -98.4860651786013], zoom: 18 },
   { name: "Sedona, AZ", coord: [34.861318964651005, -111.8009766203689], zoom: 12 },
-  { name: "Cape Canaveral, FL", coord: [28.458611978033517, -80.573866567547], zoom: 12 }
+  { name: "Cape Canaveral, FL", coord: [28.458611978033517, -80.573866567547], zoom: 12 },
+  { name: "Pittsburg, PN", coord: [40.44184609299937, -80.01281092083191], zoom: 12 },
+  { name: "San Juan, PR", coord: [18.410092596988978, -66.06637213439467], zoom: 11},
+  { name: "Bay Saint Louis, MS", coord: [30.340463002872614, -89.31694415614078], zoom: 12 },
+  { name: "Lake Ozark, MO", coord: [38.16612762388707, -92.71777938283819], zoom: 11 },
+  { name: "Wilmington, DE", coord: [39.74458501648066, -75.54874136056172], zoom: 12 },
+  {name: "Point Plesant, NJ", coord: [40.094164236731615, -74.04215539597163], zoom: 14 }
 ]
-
+// add New Jersey
 app.use(bodyParser.json())
 app.use(minify());
 
