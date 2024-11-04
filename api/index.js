@@ -164,9 +164,9 @@ const places = [
   { name: "Bay Saint Louis, MS", coord: [30.340463002872614, -89.31694415614078], zoom: 12 },
   { name: "Lake Ozark, MO", coord: [38.16612762388707, -92.71777938283819], zoom: 11 },
   { name: "Wilmington, DE", coord: [39.74458501648066, -75.54874136056172], zoom: 12 },
-  {name: "Point Plesant, NJ", coord: [40.094164236731615, -74.04215539597163], zoom: 14 }
+  {name: "Point Plesant, NJ", coord: [40.094164236731615, -74.04215539597163], zoom: 14 },
+  {name: "Taos, NM", coord: [36.41047384567595, -105.60246718591203], zoom: 11 }
 ]
-// add New Jersey
 app.use(bodyParser.json())
 app.use(minify());
 
